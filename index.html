@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>영단어 탐험대 · 40 Words</title>
+<title>덕장중학교 3학년 6과 영단어 퀴즈</title>
 <style>
   :root{
     --bg:#eef5f9; --card:#ffffff; --ink:#1d2b36; --muted:#5f7280; --line:#d6e2ea;
@@ -14,13 +14,13 @@
   html,body{margin:0;padding:0}
   body{background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR",sans-serif;line-height:1.5;min-height:100vh}
   #app{max-width:640px;margin:0 auto;padding:12px 16px 40px}
-  header.top{display:flex;justify-content:space-between;align-items:center;padding:6px 0 12px}
-  .brand{font-weight:800;font-size:1.15rem;color:var(--pri)}
-  #who{font-size:.9rem;color:var(--muted)}
+  header.top{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:6px 0 12px}
+  .brand{font-weight:800;font-size:1.15rem;color:var(--pri);word-break:keep-all;min-width:0}
+  #who{font-size:.9rem;color:var(--muted);white-space:nowrap;flex:none}
   .screen{display:none}
   .screen.on{display:block}
   .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px;margin-bottom:14px;box-shadow:0 2px 6px rgba(20,60,90,.05)}
-  h1{font-size:1.5rem;margin:0 0 6px}
+  h1{font-size:1.5rem;margin:0 0 6px;word-break:keep-all}
   h2{font-size:1.2rem;margin:0 0 10px}
   p.sub{color:var(--muted);margin:0 0 16px}
   label{display:block;font-weight:600;margin:10px 0 4px}
@@ -84,20 +84,20 @@
   td.num{text-align:right;font-weight:700}
   .muted{color:var(--muted);font-size:.9rem}
   .linkbtn{background:none;color:var(--muted);text-decoration:underline;padding:4px}
-  @media (max-width:420px){ .prompt{font-size:1.6rem} .tile{width:38px;height:44px;font-size:1.15rem} }
+  @media (max-width:420px){ .brand{font-size:1rem} .prompt{font-size:1.6rem} .tile{width:38px;height:44px;font-size:1.15rem} }
 </style>
 </head>
 <body>
 <div id="app">
   <header class="top">
-    <div class="brand">🐋 영단어 탐험대</div>
+    <div class="brand">🐋 덕장중학교 3학년 6과 영단어 퀴즈</div>
     <div id="who"></div>
   </header>
 
   <!-- 시작 -->
   <section id="s-start" class="screen">
     <div class="card">
-      <h1>영단어 탐험대</h1>
+      <h1>덕장중학교 3학년 6과 영단어 퀴즈</h1>
       <p class="sub" id="lesson-sub"></p>
       <form id="f-start" autocomplete="off">
         <label for="in-id">학번</label>
@@ -229,7 +229,7 @@
    설정 — 선생님이 고칠 부분은 여기만
    ========================================================= */
 const GAS_URL = "https://script.google.com/macros/s/AKfycbxjL9mVUz8R1H9thKbNkvqOuqD_G-cZg65lEvHyHxw4LI27lAI1a90dq7LOwm8chy4p/exec";            // Apps Script 웹앱 /exec 주소. 비우면 기기에만 저장
-const LESSON_TITLE = "영단어 40 (자연·바다·날씨)";
+const LESSON_TITLE = "3학년 6과";
 const TIME_OPTIONS = [2, 3, 5]; // 타임어택 시간(분)
 // 출제 유형: 영→한, 한→영, 듣고 뜻 고르기, 듣고 받아쓰기
 // (다시 넣을 수 있는 유형: "defToWord" 영영풀이, "exampleBlank" 예문 빈칸, "spellFill" 철자 채우기, "arrange" 철자 배열)
@@ -380,7 +380,7 @@ function markChoices(box, ans, pickedBtn) {
 /* =========================================================
    시작 / 모드 화면
    ========================================================= */
-$("#lesson-sub").textContent = LESSON_TITLE + " · " + WORDS.length + "단어";
+$("#lesson-sub").textContent = WORDS.length + "단어 · 단어 암기 모드 + 타임어택";
 $("#f-start").addEventListener("submit", e => {
   e.preventDefault();
   const id = $("#in-id").value.trim(), name = $("#in-name").value.trim();
